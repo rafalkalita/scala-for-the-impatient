@@ -16,6 +16,11 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 
+# gradle and output
+.gradle/
+/gradle/
+/build/
+/out/
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 *.iml
