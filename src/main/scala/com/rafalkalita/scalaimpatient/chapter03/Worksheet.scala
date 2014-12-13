@@ -1,7 +1,6 @@
 package com.rafalkalita.scalaimpatient.chapter03
 
 import scala.collection.mutable.ArrayBuffer
-import scala.math._
 
 object Worksheet extends App {
 
@@ -107,4 +106,48 @@ object Worksheet extends App {
     val indexes = for (i <- 0 until a2.length if a2(i) < 0) yield i
     for (j <- (1 until indexes.length).reverse) a2.remove(indexes(j))
     printArrayBuffer(a2)
+
+
+    println("\n\nCommon Algorithms")
+    println(Array(1, 3, 5, 7).sum)
+    println(ArrayBuffer(1, 5, 5).sum)
+    println(ArrayBuffer("Mary", "had", "a", "little", "lamb").max)
+    println(ArrayBuffer(6, 30, 5, 7).max)
+
+    printArrayBuffer(ArrayBuffer(6, 30, 5, 7).sortWith(_ > _))
+
+    // quickSort
+    val a5 = Array(1, 7, 2, 9)
+    scala.util.Sorting.quickSort(a5)
+    printArray(a5)
+
+    // default to string
+    println(Array(6, 30, 5, 7))
+    println(ArrayBuffer(6, 30, 5, 7))
+
+    // mkString
+    println(Array(6, 30, 5, 7).mkString(" and "))
+    println(Array(6, 30, 5, 7).mkString("<", ",", ">"))
+
+
+    println("\n\nMultidimensional arrays")
+    val matrix = Array.ofDim[Double](3, 4)
+    // Three rows, four columns, type Array[Array[Double]]
+    val matrix1 = Array.ofDim[Int](3, 4) // Three rows, four columns
+
+    for (i <- 0 until matrix.length)
+        for (j <- 0 until matrix(i).length)
+            matrix(i)(j) = i * 10 + j
+
+    def printArray(a: Array[Double]) = {
+        for (elem <- a) print(elem + " ");
+        println
+    }
+
+    def printDimArray(a: Array[Array[Double]]) = {
+        for (elem <- a)
+            printArray(elem)
+    }
+
+    printDimArray(matrix)
 }
