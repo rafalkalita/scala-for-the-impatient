@@ -58,4 +58,50 @@ object Exercises extends App {
     // How do you do the same with an ArrayBuffer[Int]?
     printArray(Array(3, 5, 7, 2, 9, 1).sortWith(_ > _))
     printArray(ArrayBuffer(3, 5, 7, 2, 9, 1).sortWith(_ > _).toArray)
+
+    // 7. Write a code snippet that produces all values form an array with duplicates removed(Hint: look at Scaladoc)
+    val aWithDuplicates = Array(2, 8, 4, 2, 9, 1, 4)
+    printArray(aWithDuplicates)
+    val aWithoutDuplicates: Array[Int] = aWithDuplicates.toSet.toArray
+    printArray(aWithoutDuplicates)
+
+    // 8. Rewrite the example at the end of section 3.4. "Transforming Arrays":
+    def removeAllNegativesExceptTheFirst(a: ArrayBuffer[Int]) = {
+        var first = true
+        var n = a.length
+        var i = 0
+        while (i < n) {
+            if (a(i) >= 0) i += 1
+            else {
+                if (first) {
+                    first = false; i += 1
+                }
+                else {
+                    a.remove(i); n -= 1
+                }
+            }
+        }
+    }
+
+    val someInts = ArrayBuffer(2, -5, 4, 3, -2, -1, -2, 5, -9)
+    printArray(someInts.toArray)
+    removeAllNegativesExceptTheFirst(someInts)
+    printArray(someInts.toArray)
+
+    // Collect indexes of the negative elements, reverse the sequence, drop the last index
+    // and call a.remove(i) for each index.
+    def removeAllNegativesExceptTheFirstRewritten(a: ArrayBuffer[Int]) = {
+        var allNegativeIndexes: ArrayBuffer[Int] = new ArrayBuffer[Int]()
+        for (i <- 0 until a.length if a(i) < 0) {
+            allNegativeIndexes += i
+        }
+        for (elem <- allNegativeIndexes.reverse.dropRight(1)) {
+            a.remove(elem)
+        }
+    }
+
+    val someInts1 = ArrayBuffer(2, -5, 4, 3, -2, -1, -2, 5, -9)
+    printArray(someInts1.toArray)
+    removeAllNegativesExceptTheFirstRewritten(someInts1)
+    printArray(someInts1.toArray)
 }
