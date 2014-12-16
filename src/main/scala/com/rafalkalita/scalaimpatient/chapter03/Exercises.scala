@@ -104,4 +104,22 @@ object Exercises extends App {
     printArray(someInts1.toArray)
     removeAllNegativesExceptTheFirstRewritten(someInts1)
     printArray(someInts1.toArray)
+
+
+    // 9. Make a collection of all time zones returned by java.util.TimeZone.getAvailableIDs that are in America.
+    // Strip off the "America/" prefix and sort the result.
+    val timezones = java.util.TimeZone.getAvailableIDs();
+    val timezonesInAmerica = for (elem <- timezones if elem.startsWith("America/")) yield elem.drop(8)
+    for (e <- timezonesInAmerica)
+        println(e)
+
+
+    // 10. SystemFlavorMap / JavaConversions.asScalaBuffer
+
+    import java.awt.datatransfer._
+
+    val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
+    val returnValue = collection.JavaConversions.asScalaBuffer(flavors.getNativesForFlavor(DataFlavor.imageFlavor))
+    for (e <- returnValue)
+        println(e)
 }
