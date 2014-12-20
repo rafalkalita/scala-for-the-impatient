@@ -14,4 +14,14 @@ object StdoutPrinter {
         for (elem <- a) Predef.print(elem + " ");
         println
     }
+
+    def print(m: Map[String, Int]) = {
+        for((x, y) <- m) Predef.print("(" + x + ", " + y + ") ")
+        println()
+    }
+
+    def print(m: scala.collection.mutable.Map[String, Int]) = {
+        for((x, y) <- m) Predef.print("(" + x + ", " + y + ") ")
+        println()
+    }
 }
