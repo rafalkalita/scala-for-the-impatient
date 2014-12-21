@@ -1,0 +1,2 @@
+This is a file that should contain some words
+Those words should be repeated from time to time
