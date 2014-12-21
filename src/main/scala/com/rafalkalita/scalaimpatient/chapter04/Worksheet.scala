@@ -70,4 +70,31 @@ object Worksheet extends App {
     val bookPropertiesAsJavaMap = BookProperties.getAsMap
     val bookPropertiesAsScalaMap = scala.collection.JavaConversions.mapAsScalaMap(bookPropertiesAsJavaMap)
     for ((key, value) <- bookPropertiesAsScalaMap) println(key + " " + value)
+    println
+
+    // Tuples
+    val t = (1, 3.14, "Fred") // this is a tulpe of type Tuple3[Int, Double, java.lang.String]
+    println(t)
+    println(t._3)
+    println(t _2) // we can omit the .
+    println(t._1)
+
+    // we can use pattern matching. _ is used if not all components are needed.
+    val (first, second, _) = t
+    println(first)
+    println(second)
+
+    // tuples are useful when we want to return multiple values from a method
+    val (upper, lower) = "New York".partition(_.isUpper)
+    println(upper)
+    println(lower)
+
+    // Zipping
+    val symbols = Array("<", "-", ">")
+    val counts = Array(2, 10, 2)
+    val pairs = symbols.zip(counts)
+
+    for ((s, n) <- pairs) print("(" + s + " " + n + ") ")
+    println
+    for ((s, n) <- pairs) println(s * n)
 }
